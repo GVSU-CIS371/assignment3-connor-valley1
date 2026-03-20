@@ -2,11 +2,6 @@
 import { computed } from "vue";
 import { creamers, currentCreamer } from "../stores/beverage";
 
-const creamerColor = computed(() => {
-  const selectedCreamer =  creamers.value.find((c) => c.id === currentCreamer.value);
-  return selectedCreamer!.color;
-});
-
 const foamColor = computed(() => {
   const selectedFoam = creamers.value.find((c) => c.id === currentCreamer.value);
   return selectedFoam!.color;
