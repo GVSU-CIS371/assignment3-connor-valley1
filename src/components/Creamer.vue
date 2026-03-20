@@ -1,10 +1,24 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { creamers, currentCreamer } from "../stores/beverage";
+
+const creamerColor = computed(() => {
+  const selectedCreamer =  creamers.value.find((c) => c.id === currentCreamer.value);
+  return selectedCreamer!.color;
+});
+
+const foamColor = computed(() => {
+  const selectedFoam = creamers.value.find((c) => c.id === currentCreamer.value);
+  return selectedFoam!.color;
+});
+
+</script>
 <template>
-  <div class="froth">
-    <div v-for=" in 5" class="foam"></div>
+  <div class="froth carafe">
+    <div v-for="creamer in 5" :key="creamer" class="foam carafe" :style="{ backgroundColor: foamColor }"></div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
 <style lang="scss" scoped>
 .froth {
   overflow: visible;
@@ -12,12 +26,10 @@
   position: relative;
   height: 20%;
   width: 100%;
-  background-color: #c6c6c6;
   animation: pour-tea 2s 2s forwards;
 }
 .foam {
   display: block;
-  background: #e4e0d2;
   border-radius: 30px;
   height: 40px;
   width: 40px;
